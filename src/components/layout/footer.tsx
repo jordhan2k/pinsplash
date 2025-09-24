@@ -17,7 +17,7 @@ const SOCIAL_LINKS = [
 
 function Footer() {
   return (
-    <footer className="flex flex-col md:flex-row gap-2 items-center justify-between p-4 md:p-8 xl:py-8 xl:px-28">
+    <footer className="flex flex-col md:flex-row gap-2 items-center justify-between p-4 md:p-8 xl:py-8 xl:px-28 max-w-[1440px] mx-auto">
       <div className="text-sm font-normal text-secondary-foreground">
         © Pinsplash, Inc. All rights reserved.
       </div>
