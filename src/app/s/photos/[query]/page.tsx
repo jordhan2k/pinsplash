@@ -1,10 +1,9 @@
 // import { fetchPhotoDetail } from '@/features/photo-detail/action';
 import { fetchPhotos } from '@/features/photo-list/action';
-import MasonryList from '@/features/photo-list/components/masonry-list'
+import MasonryList from '@/features/photo-list/components/masonry-list';
 import { IPhoto } from '@/types';
 import capitalize from 'lodash/capitalize';
 import { Metadata } from 'next';
-import React from 'react'
 
 type SearchPageProps = {
   params: Promise<{ query: string }>
@@ -40,9 +39,10 @@ export default async function SearchPage({ params }: SearchPageProps) {
 
   return (
     <>
-      <h1 className='text-3xl font-semibold text-neutral-900 md:text-4xl px-4 py-6 md:px-8 xl:px-28'>
-        {capitalize(decodeURIComponent(query).replaceAll('-', ' '))}
-      </h1>
+      <div className='px-4 py-6 md:px-8 xl:px-28'>
+        <h1 className='text-3xl font-semibold text-neutral-900 md:text-4xl '>
+          {capitalize(decodeURIComponent(query).replaceAll('-', ' '))}</h1>
+      </div>
       <MasonryList
         initialItems={response}
         queryKey={`search/photos/${query}`}

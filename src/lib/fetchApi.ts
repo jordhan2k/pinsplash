@@ -46,10 +46,10 @@ export async function fetchApi<T>(
       ...(headers || {}),
     },
   });
+  if (res.status === 404) return null as T;
   if (!res.ok) {
     const message = await res.text();
     throw new Error(`Error fetching ${endpoint}: ${message ?? res.statusText}`);
   }
-  if (res.status === 204) return null as T;
   return await res.json();
 }

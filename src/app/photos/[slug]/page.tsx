@@ -5,6 +5,7 @@ import { blurHashToDataURL } from '@/lib/utils';
 import { IPhoto } from '@/types';
 import capitalize from 'lodash/capitalize';
 import { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from 'next/navigation';
 
 type PhotoDetailPageProps = {
   params: Promise<{ slug: string }>
@@ -34,6 +35,10 @@ export async function generateMetadata(
 export default async function PhotoDetailPage({ params }: PhotoDetailPageProps) {
   const { slug } = await params;
   const response: IPhoto = await fetchPhotoDetail(slug as string);
+
+  if (!response) {
+    return notFound();
+  }
   const blurDataURL = await blurHashToDataURL(response.blur_hash);
   response.blurDataURL = blurDataURL;
 

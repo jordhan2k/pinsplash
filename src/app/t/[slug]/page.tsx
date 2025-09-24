@@ -3,6 +3,7 @@ import { fetchTopic } from '@/features/topic-detail/action';
 import Cover from '@/features/topic-detail/components/cover';
 import { ITopic } from '@/types';
 import { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from 'next/navigation';
 
 type TopicPageProps = {
   params: Promise<{ slug: string }>
@@ -36,6 +37,10 @@ export const dynamicParams = true;
 async function TopicPage({ params }: TopicPageProps) {
   const { slug } = await params;
   const response: ITopic = await fetchTopic(slug);
+
+  if (!response) {
+    return notFound();
+  }
 
 
   return (
